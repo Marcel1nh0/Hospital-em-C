@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-//PILHA - LIFO
+
 typedef struct Atendimento {
     char nome[50];
     int idade;
@@ -10,12 +10,12 @@ typedef struct Atendimento {
     struct Atendimento* prox;
 } Atendimento;
 
-Atendimento* topo = NULL;//PILHA - LIFO
+Atendimento* topo = NULL;
 
-Atendimento* inicio = NULL;//FILA - FIFO
-Atendimento* fim = NULL;//FILA - FIFO
+Atendimento* inicio = NULL;
+Atendimento* fim = NULL;
 
-//PUSH - PILHA - LIFO
+
 void adicionarHistorico(struct Atendimento *novo){
     if(novo == NULL){
         printf("Erro ao alocar memória.\n");
@@ -25,7 +25,7 @@ void adicionarHistorico(struct Atendimento *novo){
     topo = novo;
     printf("\nHistorico adicionado.");
 }
-//POP - PILHA - LIFO
+
 void retirarHistorico(){
     
      if(topo == NULL){
@@ -40,7 +40,7 @@ void retirarHistorico(){
     free(temp);
 }   
 
-//ENQUEUE- FILA - FIFO
+
 void cadastrarPaciente(){
     char buffer[20];
     struct Atendimento *novo = (struct Atendimento*)malloc(sizeof(struct Atendimento));
@@ -77,7 +77,7 @@ void cadastrarPaciente(){
     }
     printf("\nPaciente adicionado na fila!\n");
 }
-//DEQUEUE - FILA - FIFO
+
 void atenderPaciente(){
     if(inicio == NULL){
         printf("Fila vazia.\n");
@@ -93,7 +93,7 @@ void atenderPaciente(){
     printf("\nPaciente atendido!\n");
     printf("Nome: %s | Idade: %d | Desc: %s", temp->nome, temp->idade, temp->descricao);
 
-    adicionarHistorico(temp);//Push dentro do Dequeue
+    adicionarHistorico(temp);
 
     printf("\nPaciente adicionado ao historico.\n");
 }
@@ -130,7 +130,7 @@ void mostrarHistorico(){
      printf("\n");
 }   
 
-//BUSCAR
+
 void buscarAtendimento() { 
     char nome[50];
     Atendimento* atual = topo;
@@ -155,8 +155,8 @@ void buscarAtendimento() {
     }
 }
 
-//LIBERAR MEMORIA
-void liberarHistorico() {//PILHA - LIFO
+
+void liberarHistorico() {
     Atendimento* temp;
     while (topo != NULL) {
         temp = topo;
@@ -164,7 +164,7 @@ void liberarHistorico() {//PILHA - LIFO
         free(temp);
     }
 }
-void liberarFila(){//FILA - FIFO
+void liberarFila(){
     Atendimento *temp;
     while(inicio != NULL){
         temp = inicio;
@@ -175,7 +175,7 @@ void liberarFila(){//FILA - FIFO
 }
 
 
-//INTERFACE
+
 void run_interface(void) {
     int opt;
     int c;
@@ -207,7 +207,7 @@ void run_interface(void) {
                 break;
 
             case 2:
-                atenderPaciente(); // simula atendimento (FIFO)
+                atenderPaciente(); 
                 break;
 
             case 3:
@@ -244,7 +244,7 @@ void run_interface(void) {
     }
 }
 
-//MAIN
+
 int main() {
     run_interface();
     return 0;
